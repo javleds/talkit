@@ -5,7 +5,8 @@ export default {
     timeout: 0,
     finishDateTime: null,
     minutes: 5,
-    seconds: 0
+    seconds: 0,
+    currentStep: 0
   },
   getters: {
     limitTime ({ limitTime }) {
@@ -21,6 +22,12 @@ export default {
         : state.seconds
 
       return `${minutes}:${seconds}`
+    },
+    totalSteps (state) {
+      return (state.minutes + 1) * 60
+    },
+    currentStep ({ currentStep }) {
+      return currentStep
     }
   },
   mutations: {
@@ -54,6 +61,9 @@ export default {
     },
     secondsFromDifference (state, difference) {
       state.seconds = Math.floor((difference % (1000 * 60)) / 1000)
+    },
+    currentStep (state, currentStep) {
+      state.currentStep = currentStep
     }
   },
   actions: {
@@ -69,6 +79,7 @@ export default {
           const difference = state.finishDateTime.getTime() - now.getTime()
           commit('minutesFromDifference', difference)
           commit('secondsFromDifference', difference)
+          commit('currentStep', state.currentStep + 1)
         },
         1000
       ))
@@ -78,6 +89,7 @@ export default {
       commit('finishDateTime', null)
       commit('minutes', state.limitTime)
       commit('seconds', 0)
+      commit('currentStep', 0)
     },
     reset ({ dispatch }) {
       dispatch('stop')
