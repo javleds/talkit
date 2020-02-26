@@ -4,8 +4,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['topic']
+  computed: {
+    ...mapGetters({
+      topic: 'topic/topic'
+    })
+  }
 }
 </script>
 

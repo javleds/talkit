@@ -4,11 +4,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: ['displayTime']
+  computed: {
+    ...mapGetters({
+      displayTime: 'timer/displayTime'
+    })
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
