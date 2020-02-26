@@ -22,8 +22,15 @@ export default {
   },
   actions: {
     changeTopic ({ commit, state }) {
-      const index = Math.floor(Math.random() * state.topics.length)
-      commit('topic', state.topics[index])
+      const { topics } = state
+
+      if (topics.length === 0) {
+        commit('topic', 'Empty topic list')
+        return
+      }
+
+      const index = Math.floor(Math.random() * topics.length)
+      commit('topic', topics[index])
     },
     addTopic ({ commit, state }, topic) {
       const { topics } = state
