@@ -1,5 +1,7 @@
 {
-  "name": "speakit",
+  "author": "Javier Ledezma<juls0593@mail.com>",
+  "license": "MIT",
+  "name": "talkit",
   "version": "0.1.0",
   "private": true,
   "scripts": {

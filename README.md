@@ -1,4 +1,4 @@
-# speakit
+# talkit
 
 ## Project setup
 ```
