@@ -1,11 +1,11 @@
 <template lang="pug">
   .timer
-    h2 {{ limitTime }}
+    h2 {{ displayTime }}
 </template>
 
 <script>
 export default {
-  props: ['limitTime']
+  props: ['displayTime']
 }
 </script>
 

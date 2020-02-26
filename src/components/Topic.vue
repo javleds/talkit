@@ -1,6 +1,6 @@
 <template lang="pug">
   .topic
-    h1 {{ topic }}
+    h1 {{ topic.toUpperCase() }}
 </template>
 
 <script>
