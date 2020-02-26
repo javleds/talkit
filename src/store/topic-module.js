@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    topics: ['Vue js', 'React', 'Angular', 'hosting', 'frontend', 'react', 'arquitectura', 'SOLID', 'STUPID', 'PHP', 'golang', 'POO', 'dart', 'Android', 'Facades', 'Monolito', 'Laravel'],
+    topics: ['VUE JS', 'REACT', 'ANGULAR', 'HOSTING', 'FRONTEND', 'REACT', 'ARQUITECTURA', 'SOLID', 'STUPID', 'PHP', 'GOLANG', 'POO', 'DART', 'ANDROID', 'FACADES', 'MONOLITO', 'LARAVEL'],
     topic: ''
   },
   getters: {
@@ -34,6 +34,12 @@ export default {
     },
     addTopic ({ commit, state }, topic) {
       const { topics } = state
+      const cleanTopic = topic.toUpperCase().trim()
+
+      if (topics.indexOf(cleanTopic)) {
+        return
+      }
+
       topics.push(topic.toUpperCase())
       commit('topics', topics)
     },
