@@ -39,6 +39,16 @@ export default {
       this.reset()
     }
   },
+  created () {
+    this.$store.watch(
+      (state, getters) => getters['timer/displayTime'],
+      (newValue) => {
+        if (newValue === '00:00') {
+          this.handleChangeTopic()
+        }
+      }
+    )
+  },
   mounted () {
     this.handleChangeTopic()
   },
