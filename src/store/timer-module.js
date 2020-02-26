@@ -25,7 +25,12 @@ export default {
   },
   mutations: {
     limitTime (state, limitTime) {
-      state.limitTime = limitTime
+      let intValue = parseInt(limitTime)
+      if (isNaN(intValue)) {
+        intValue = 5
+      }
+
+      state.limitTime = parseInt(limitTime)
     },
     timeout (state, timeout) {
       state.timeout = timeout
