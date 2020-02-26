@@ -1,7 +1,7 @@
 <template lang="pug">
   .config-form
     form(@submit.prevent="onSubmit")
-      app-input(:value="limitTime" @input="setLimitTime" placeholder="Limit time")
+      app-input(:value="limitTime" @input="setLimitTime" placeholder="Limit time" label="Limit time:")
       app-button(@click="onSubmit" width="100%") Save
 </template>
 

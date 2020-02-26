@@ -1,11 +1,16 @@
 <template lang="pug">
   .app-input
+    label(v-if="label !== ''") {{ label }}
     input(type="text" :placeholder="placeholder" :value="value" @input="onInput")
 </template>
 
 <script>
 export default {
-  props: ['value', 'placeholder'],
+  props: {
+    value: { required: true },
+    placeholder: { type: String, default: '' },
+    label: { type: String, default: '' }
+  },
   methods: {
     onInput ($event) {
       this.$emit('input', $event.target.value)
@@ -18,7 +23,13 @@ export default {
   $color: #ffffff;
 
   .app-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
     input {
+      flex-basis: 70%;
       padding: 10px;
       margin: 20px 5px;
       border: none;
