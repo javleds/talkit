@@ -1,7 +1,7 @@
 <template lang="pug">
   .config-form
     form(@submit.prevent="onSubmit")
-      app-input(:value="limitTime" @input="setLimitTime" placeholder="Limit time" label="Limit time:")
+      app-input(v-model="limit" :placeholder="placeholder" label="Limit time:")
       app-button(@click="onSubmit" width="100%") Save
 </template>
 
@@ -16,18 +16,38 @@ export default {
     AppButton,
     AppInput
   },
+  data () {
+    return {
+      limit: ''
+    }
+  },
   computed: {
     ...mapGetters({
       limitTime: 'timer/limitTime'
-    })
+    }),
+    placeholder () {
+      return `Limit time (${this.limitTime} by now)`
+    }
   },
   methods: {
     ...mapMutations({
       setLimitTime: 'timer/limitTime'
     }),
     onSubmit () {
-      this.setLimitTime(this.limitTime)
-      this.$router.push({ name: 'talk-it' })
+      const numberLimit = parseInt(this.limit)
+
+      if (isNaN(numberLimit)) {
+        this.limit = ''
+        return
+      }
+
+      if (numberLimit < 0) {
+        this.limit = ''
+        return
+      }
+
+      this.setLimitTime(numberLimit)
+      this.limit = ''
     }
   }
 }
