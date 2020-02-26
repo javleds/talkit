@@ -1,6 +1,6 @@
 <template lang="pug">
   .config
-    action(top-left :on-click="() => $router.push({ name: 'talk-it' })") Back
+    action(top-left @click="$router.push({ name: 'talk-it' })") Back
     config-form
 </template>
 
