@@ -6,16 +6,22 @@ import TalkIt from '../views/TalkIt.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '*', redirect: '/' },
   {
     path: '/',
-    name: 'talk_it',
+    name: 'talk-it',
     component: TalkIt
+  },
+  {
+    path: '/config',
+    name: 'config',
+    component: () => import(/* webpackChunkName: "config" */ '../views/Config.vue')
+  },
+  {
+    path: '/topics',
+    name: 'topics',
+    component: () => import(/* webpackChunkName: "topics" */ '../views/Topics.vue')
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({

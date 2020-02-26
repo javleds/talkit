@@ -2,6 +2,8 @@
   .talk-it
     topic
     timer
+    action(top-left :on-click="() => $router.push({ name: 'topics' })") Topics
+    action(top-right :on-click="() => $router.push({ name: 'config' })") Config
     action(bottom-left :on-click="addMinutes") + {{ limitTime }}
     action(bottom-right :on-click="handleChangeTopic") Skip!
 
@@ -28,6 +30,7 @@ export default {
   methods: {
     ...mapActions({
       reset: 'timer/reset',
+      stop: 'timer/stop',
       addMinutes: 'timer/addMinutes',
       changeTopic: 'topic/changeTopic'
     }),
@@ -38,6 +41,9 @@ export default {
   },
   mounted () {
     this.handleChangeTopic()
+  },
+  destroyed () {
+    this.stop()
   }
 }
 </script>

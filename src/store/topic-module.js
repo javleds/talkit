@@ -6,7 +6,10 @@ export default {
   },
   getters: {
     topic ({ topic }) {
-      return topic
+      return topic.toUpperCase()
+    },
+    topics ({ topics }) {
+      return topics.map((topic) => topic.toUpperCase())
     }
   },
   mutations: {
@@ -21,6 +24,18 @@ export default {
     changeTopic ({ commit, state }) {
       const index = Math.floor(Math.random() * state.topics.length)
       commit('topic', state.topics[index])
+    },
+    addTopic ({ commit, state }, topic) {
+      const { topics } = state
+      topics.push(topic.toUpperCase())
+      commit('topics', topics)
+    },
+    removeTopic ({ commit, state }, topic) {
+      const { topics } = state
+      commit('topics', topics.filter((t) => t.toUpperCase() !== topic.toUpperCase()))
+    },
+    removeAll ({ commit }) {
+      commit('topics', [])
     }
   }
 }
