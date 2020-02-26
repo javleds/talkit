@@ -5,7 +5,7 @@
         topic-form
       .list
         topic-list
-    action(top-left :on-click="() => $router.push({ name: 'talk-it' })") Back
+    action(top-left @click="$router.push({ name: 'talk-it' })") Back
 </template>
 
 <script>

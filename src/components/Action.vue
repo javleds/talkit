@@ -1,13 +1,17 @@
 <template lang="pug">
   .action(:style="style")
-    button(type="button" @click="onClick")
+    app-button(@click="$emit('click')" width="120px")
       slot
 </template>
 
 <script>
+import AppButton from './AppButton'
+
 export default {
+  components: {
+    AppButton
+  },
   props: {
-    onClick: { type: Function, required: true },
     topLeft: { type: Boolean, required: false },
     topRight: { type: Boolean, required: false },
     bottomLeft: { type: Boolean, required: false },
@@ -53,22 +57,7 @@ export default {
     position: absolute;
 
     button {
-      background-color: transparent;
-      border: solid 1px $color;
       padding: 15px;
-      color: $color;
-      transition: all .3s ease-out;
-      min-width: 120px;
-
-      &:focus,
-      &:hover {
-        outline: none;
-      }
-
-      &:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-      }
     }
   }
 </style>

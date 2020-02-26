@@ -1,16 +1,21 @@
 <template lang="pug">
   .topic-list
-    button.all(@click="removeAll") Remove all
+    app-button.all(@click="removeAll" width="100%") Remove all
     ul
       li(v-for="topic in topics")
         | {{ topic }}
-        button(@click="removeTopic(topic)") x
+        app-button(@click="removeTopic(topic)" width="50px") x
 </template>
 
 <script>
+import AppButton from './AppButton'
+
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  components: {
+    AppButton
+  },
   computed: {
     ...mapGetters({
       topics: 'topic/topics'
@@ -32,7 +37,7 @@ export default {
     ul {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 0 5px 0 0 ;
       max-height: 80vh;
       overflow: auto;
       &::-webkit-scrollbar {
@@ -49,28 +54,7 @@ export default {
       }
     }
 
-    button {
-      background-color: transparent;
-      border: solid 1px $color;
-      padding: 5px;
-      color: $color;
-      transition: all .3s ease-out;
-      min-width: 50px;
-
-      &:focus,
-      &:hover {
-        outline: none;
-      }
-
-      &:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-      }
-    }
-
     .all {
-      width: 100%;
-      text-align: center;
       margin-bottom: 15px;
     }
   }

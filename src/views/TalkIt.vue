@@ -2,10 +2,10 @@
   .talk-it
     topic
     timer
-    action(top-left :on-click="() => $router.push({ name: 'topics' })") Topics
-    action(top-right :on-click="() => $router.push({ name: 'config' })") Config
-    action(bottom-left :on-click="addMinutes") + {{ limitTime }}
-    action(bottom-right :on-click="handleChangeTopic") Skip!
+    action(top-left @click="$router.push({ name: 'topics' })") Topics
+    action(top-right @click="$router.push({ name: 'config' })") Config
+    action(bottom-left @click="addMinutes") + {{ limitTime }}
+    action(bottom-right @click="handleChangeTopic") Skip!
 
 </template>
 
