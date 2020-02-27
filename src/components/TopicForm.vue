@@ -22,8 +22,7 @@ export default {
       addTopic: 'topic/addTopic'
     }),
     onSubmit () {
-      const topic = this.topic
-      this.addTopic(topic)
+      this.addTopic(this.topic)
       this.topic = ''
     }
   }

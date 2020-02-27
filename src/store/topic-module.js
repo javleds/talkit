@@ -36,7 +36,7 @@ export default {
       const { topics } = state
       const cleanTopic = topic.toUpperCase().trim()
 
-      if (topics.indexOf(cleanTopic)) {
+      if (topics.indexOf(cleanTopic) !== -1) {
         return
       }
 
