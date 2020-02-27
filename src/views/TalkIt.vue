@@ -13,7 +13,7 @@
     action(top-left @click="$router.push({ name: 'topics' })") Topics
     action(top-right @click="$router.push({ name: 'config' })") Config
     action(bottom-left @click="addMinutes") + {{ limitTime }}
-    action(bottom-right @click="handleChangeTopic") Skip!
+    action(bottom-right @click="skipTopic") Skip!
 
 </template>
 
@@ -36,7 +36,8 @@ export default {
     ...mapGetters({
       limitTime: 'timer/limitTime',
       totalSteps: 'timer/totalSteps',
-      currentStep: 'timer/currentStep'
+      currentStep: 'timer/currentStep',
+      topic: 'topic/topic'
     })
   },
   methods: {
@@ -44,11 +45,16 @@ export default {
       reset: 'timer/reset',
       stop: 'timer/stop',
       addMinutes: 'timer/addMinutes',
-      changeTopic: 'topic/changeTopic'
+      changeTopic: 'topic/changeTopic',
+      removeTopic: 'topic/removeTopic'
     }),
-    handleChangeTopic () {
+    skipTopic () {
       this.changeTopic()
       this.reset()
+    },
+    nextTopic () {
+      this.removeTopic(this.topic)
+      this.skipTopic()
     }
   },
   created () {
@@ -56,13 +62,13 @@ export default {
       (state, getters) => getters['timer/displayTime'],
       (newValue) => {
         if (newValue === '00:00') {
-          this.handleChangeTopic()
+          this.nextTopic()
         }
       }
     )
   },
   mounted () {
-    this.handleChangeTopic()
+    this.skipTopic()
   },
   destroyed () {
     this.stop()
