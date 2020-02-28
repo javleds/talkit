@@ -52,3 +52,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .config-form {
+    padding: 0 25px;
+  }
+</style>
