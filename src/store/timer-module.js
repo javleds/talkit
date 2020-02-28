@@ -21,6 +21,12 @@ export default {
         ? `0${state.seconds}`
         : state.seconds
 
+      const displayTime = `${minutes}:${seconds}`
+
+      if (displayTime.indexOf('-') !== -1) {
+        return '00:00'
+      }
+
       return `${minutes}:${seconds}`
     },
     totalSteps (state) {
