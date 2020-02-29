@@ -28,11 +28,6 @@ export default {
       const firstChar = inputValue.charAt(0)
       const lastChar = inputValue.charAt(inputValue.length - 1)
 
-      console.log('inputValue', inputValue)
-      console.log('multipleWordDelimiter', multipleWordDelimiter)
-      console.log('firstChar', firstChar)
-      console.log('lastChar', lastChar)
-
       if (firstChar === lastChar && firstChar === multipleWordDelimiter) {
         this.addMultiple(inputValue)
         this.topic = ''
