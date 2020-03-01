@@ -53,6 +53,17 @@ export default {
     },
     removeAll ({ commit }) {
       commit('topics', [])
+    },
+    isValidTopic ({ state }, value) {
+      if (value.length === 0) {
+        return false
+      }
+
+      if (state.topics.indexOf(value) !== -1) {
+        return false
+      }
+
+      return true
     }
   }
 }
