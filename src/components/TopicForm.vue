@@ -1,28 +1,41 @@
 <template lang="pug">
   .topic-form
     form(@submit.prevent="onSubmit")
-      app-input(v-model="topic" placeholder="New topic")
+      shake(:shake="shake.topic" @end="shake.topic = false")
+        app-input(v-model="topic" placeholder="New topic")
 </template>
 
 <script>
 import AppInput from './AppInput'
+import Shake from './Shake'
+
 import { mapActions } from 'vuex'
 
 export default {
   components: {
-    AppInput
+    AppInput,
+    Shake
   },
   data () {
     return {
-      topic: ''
+      topic: '',
+      shake: {
+        topic: false
+      }
     }
   },
   methods: {
     ...mapActions({
-      addTopic: 'topic/addTopic'
+      addTopic: 'topic/addTopic',
+      isValidTopic: 'topic/isValidTopic'
     }),
-    onSubmit () {
-      const inputValue = this.topic
+    async onSubmit () {
+      const inputValue = this.topic.toUpperCase().trim()
+
+      if (!await this.isValidTopic(inputValue)) {
+        this.shake.topic = true
+        return
+      }
 
       const multipleWordDelimiter = ':'
       const firstChar = inputValue.charAt(0)
@@ -48,7 +61,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
